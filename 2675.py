@@ -7,3 +7,4 @@ for i in range (a):
     for i in range (len(c)):
         d += (c[i]*b)
     print(d)
+    
