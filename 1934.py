@@ -1,12 +1,12 @@
+def gdc(x, y):
+    while y > 0:
+        x, y = y, x % y
+    return x
+def lcm(x, y):
+    return x * y // gdc(x, y)
+
 a = int(input())
 for i in range(a):
     b,c=map(int,input().split())
-    l = []
-    for i in range(1,c+1):
-        l.append(b*i)
-    for i in range(1,b+1):
-        d = c*i
-        if d in l:
-            print(d)
-            break
-        
+    print(lcm(b, c))
+    
