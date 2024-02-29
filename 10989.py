@@ -1,7 +1,6 @@
 import sys
-num=int(input())
+num=int(sys.stdin.readline())
 a=[0]*10001
-b=0
 for i in range(num):
     b=int(sys.stdin.readline())
     a[b]+=1
