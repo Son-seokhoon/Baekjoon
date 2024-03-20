@@ -1,41 +1,29 @@
 a,b,c=map(int,input().split())
-car=list(map(int,input().split()))
+truck=list(map(int,input().split()))
 bridge=[0]*b
-num=0
 time=0
-for i in range(len(car)):
-    if num>i:
-        continue
-    bridge.pop(0)
-    bridge.append(car[i])
-    num+=1
-    for l in range(i,len(car)):
-        if l==(len(car)-1):
-            bridge.pop(0)
-            bridge.append(car[l])
-            time+=1
-            num+=1
-            if sum(bridge)>c:
-                bridge.pop()
-                bridge.append(0)
-                num-=1  
-        elif l!=(len(car)-1):
-            bridge.pop(0)
-            bridge.append(car[l+1])
-            time+=1
-            num+=1
-            if sum(bridge)>c:
-                bridge.pop()
-                bridge.append(0)
-                num-=1
-                break
-    while bridge[0]==0:
+while True:
+    if sum(bridge)==0 and sum(truck)==0:
+        break
+    if bridge[0]!=0 and (sum(bridge[1:])+truck[0]) <= c:
+        bridge.append(truck.pop(0))
+        truck.append(0)
         bridge.pop(0)
-        bridge.append(0)
         time+=1
-while sum(bridge)!=0:
-    bridge.pop(0)
-    bridge.append(0)
-    time+=1
-print(bridge)
+    elif bridge[0]!=0 and (sum(bridge[1:])+truck[0]) > c:
+        bridge.append(0)
+        bridge.pop(0)
+        time+=1
+    elif (sum(bridge)+truck[0]) <= c and bridge[0]==0:
+        bridge.append(truck.pop(0))
+        truck.append(0)
+        bridge.pop(0)
+        time+=1
+    elif (sum(bridge)+truck[0]) > c and bridge[0]==0:
+        for i in range(b):
+            if bridge[0]!=0:
+                break
+            bridge.append(0)
+            bridge.pop(0)
+            time+=1
 print(time)
